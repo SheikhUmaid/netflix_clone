@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/pages/home_screen.dart';
 import 'package:netflix_clone/pages/splash_screen.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        scrollBehavior: MyCustomScrollBehavior(),
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.red,
@@ -22,4 +24,14 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomePage(),
         });
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.unknown
+      };
 }
